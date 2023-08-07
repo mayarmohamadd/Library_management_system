@@ -1,0 +1,99 @@
+<aside style="position: fixed;" class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{% url 'index' %}" class="brand-link">
+        <span class="brand-text font-weight-light">Library</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a href="{% url 'books' %}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            New Books
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Category
+                            <i class="fas fa-angle-left right"></i>
+
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a id="addcat" href="#" class="nav-link">
+                                <i class="fa fa-plus"></i>
+                                <p class="text-light"> Add New </p>
+                            </a>
+                        </li>
+                        <form id="cat" method="POST">
+                            {% csrf_token %}
+                            <div id="catinput">
+                                {{formcategory}}
+
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <button id="backcat" class="btn btn-primary">Back</button>
+                            </div>
+                        </form>
+
+                        {% for category in categories %}
+                        <li style="cursor: pointer;" class="nav-item">
+                            <a id="" class="nav-link category-button" data-category="{{ category.id }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{category.name}}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </li>
+
+                <!-- Categories -->
+                <div class="row justify-content-center mb-3">
+                    <div class="col-4">
+                        <ul class="nav">
+                            <!-- Your category links here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Borrowed Books -->
+                <li class="nav-header">Status</li>
+
+                <li style="cursor: pointer;" class="nav-item statussold">
+                    <a id="statusSold" class="nav-link status-button" data-status="sold">
+                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <p class="text">Sold</p>
+                    </a>
+                </li>
+                <li style="cursor: pointer;" class="nav-item statusrental">
+                    <a id="statusRental" class="nav-link status-button" data-status="rental">
+                        <i class="nav-icon far fa-circle text-warning"></i>
+                        <p>Rental</p>
+                    </a>
+                </li>
+                <li style="cursor: pointer;" class="nav-item statusavaliable">
+                    <a id="statusAvailable" class="nav-link status-button" data-status="available">
+                        <i class="nav-icon far fa-circle text-info"></i>
+                        <p>Available</p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- Sidebar Menu -->
+    </div>
+    <!-- Sidebar -->
+</aside>
